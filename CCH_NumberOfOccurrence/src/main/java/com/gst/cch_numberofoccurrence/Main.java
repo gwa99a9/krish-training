@@ -4,43 +4,67 @@
  */
 package com.gst.cch_numberofoccurrence;
 
-import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
-
 /**
  *
  * @author OBITO
  */
 public class Main {
+//TODO : use scanner
+//TODO : write test classess
 
-    static SortedMap<String, Integer> count = new TreeMap<>();
+    public static void main(String[] args) {
+        String text = "Apple is aPPle";
+        findTheOccurrences(text);
+    }
 
-    private static void findOccurrence(String text) {
-        String[] split = text.split("");
-        for (String string : split) {
-            if (isValidCharacter(string)) {
-                if (count.containsKey(string)) {
-                    Integer get = count.get(string);
-                    count.replace(string, get + 1);
-                } else {
-                    count.put(string, 1);
+    public static void findTheOccurrences(String text) {
+        find(text.toLowerCase());
+    }
+
+    private static void find(String rawString) {
+        char[] charStringArrayNoDups = removeDuplicates(rawString);
+        sort(charStringArrayNoDups);
+
+        for (int i = 0; i < charStringArrayNoDups.length; i++) {
+            int countOfOccurrences = 0;
+            for (int j = 0; j < rawString.toCharArray().length; j++) {
+                if (isValidCharacter(String.valueOf(rawString.toCharArray()[j]))) {
+                    if (charStringArrayNoDups[i] == rawString.toCharArray()[j]) {
+                        countOfOccurrences++;
+                    }
                 }
             }
+            System.out.println(String.valueOf(charStringArrayNoDups[i]) + " cound is " + countOfOccurrences);
         }
     }
 
-    public static boolean isValidCharacter(String c) {
+    private static boolean isValidCharacter(String c) {
         return c.matches("[a-zA-Z]+");
     }
 
-    public static void main(String[] args) {
-        String text = "Apple is pp x 33  @#@";
-        findOccurrence(text.toLowerCase());
-        for (Map.Entry<String, Integer> entry : count.entrySet()) {
-            Object key = entry.getKey();
-            Object val = entry.getValue();
-            System.out.println(key + "-" + val);
+    private static char[] removeDuplicates(String text) {
+        StringBuilder noDupsText = new StringBuilder();
+        for (int i = 0; i < text.length(); i++) {
+            if (isValidCharacter(String.valueOf(text.charAt(i)))) {
+                if (!noDupsText.toString().contains(String.valueOf(text.charAt(i)))) {
+                    noDupsText.append(text.charAt(i));
+                }
+            }
+        }
+        return noDupsText.toString().toCharArray();
+    }
+
+    private static void sort(char[] charStringArrayNoDups) {
+        int size = charStringArrayNoDups.length;
+        for (int i = 0; i < size; i++) {
+            for (int j = i + 1; j < size; j++) {
+                if (charStringArrayNoDups[i] > charStringArrayNoDups[j]) {
+                    char temp = charStringArrayNoDups[i];
+                    charStringArrayNoDups[i] = charStringArrayNoDups[j];
+                    charStringArrayNoDups[j] = temp;
+                }
+            }
+
         }
     }
 }
