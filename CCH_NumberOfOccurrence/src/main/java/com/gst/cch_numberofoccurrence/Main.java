@@ -20,18 +20,9 @@ public class Main {
     }
     
     public static void init(String rawString) {
-        
         rawString = rawString.toLowerCase().replaceAll("\\s+", "");
         char[] charStringArrayNoDups = removeDuplicates(rawString);
         sort(charStringArrayNoDups);
-        String expectedString = "Occrances of [a] is 2\n"
-                + "Occrances of [e] is 2\n"
-                + "Occrances of [i] is 1\n"
-                + "Occrances of [l] is 2\n"
-                + "Occrances of [p] is 4\n"
-                + "Occrances of [s] is 1";
-        System.out.println(expectedString);
-        System.out.println(expectedString.equals(findTheOccurrences(rawString, charStringArrayNoDups)));
         System.out.println(findTheOccurrences(rawString, charStringArrayNoDups));
     }
     
