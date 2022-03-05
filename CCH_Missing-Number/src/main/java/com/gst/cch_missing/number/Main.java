@@ -12,6 +12,7 @@ import java.util.Scanner;
  * @author OBITO
  */
 public class Main {
+//TODO : create test classess
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -30,12 +31,11 @@ public class Main {
         }
 
         sort(seqNumbers);
-        System.out.println(Arrays.toString(seqNumbers));
+        System.out.println("Sorted Number Sequence" + Arrays.toString(seqNumbers));
         findTheMissingNumber(seqNumbers);
         scanner.close();
     }
 
-//TODO : create test classess
     private static void sort(int[] seqNumbers) {
         int size = seqNumbers.length;
         for (int i = 0; i < size; i++) {
@@ -50,14 +50,17 @@ public class Main {
     }
 
     private static void findTheMissingNumber(int[] seqNumbers) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Missing Numbers for this Sequence are : ").append(System.lineSeparator());
         for (int i = 0; i < seqNumbers.length - 1; i++) {
             if ((seqNumbers[i + 1] - seqNumbers[i]) == 2) {
-                System.out.println(seqNumbers[i] + 1);
+                builder.append(seqNumbers[i] + 1).append(System.lineSeparator());
             } else if ((seqNumbers[i + 1] - seqNumbers[i]) >= 3) {
                 System.out.println("Invalid Sequence");
-                break;
+                System.exit(0);
             }
         }
+        System.out.println(builder.toString());
     }
 
     private static boolean validateInput(String rawSplit) {
