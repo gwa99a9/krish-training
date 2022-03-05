@@ -12,7 +12,6 @@ import java.util.Scanner;
  * @author OBITO
  */
 public class Main {
-//TODO : create test classess
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -20,23 +19,28 @@ public class Main {
 
         String rawInput = scanner.nextLine();
         String[] rawSplit = rawInput.split(",");
-
         int[] seqNumbers = new int[rawSplit.length];
+
+        createNumberSequence(rawSplit, seqNumbers);
+        sort(seqNumbers);
+        System.out.println("Sorted Number Sequence " + Arrays.toString(seqNumbers));
+        System.out.println(findTheMissingNumber(seqNumbers));
+
+        scanner.close();
+    }
+
+    public static int[] createNumberSequence(String[] rawSplit, int[] seqNumbers) {
         for (int i = 0; i < rawSplit.length; i++) {
             if (!validateInput(rawSplit[i])) {
-                System.out.println("Invalid Number Sequence");
+                System.out.println("Invalid Number Sequence.");
                 System.exit(0);
             }
             seqNumbers[i] = Integer.parseInt(rawSplit[i]);
         }
-
-        sort(seqNumbers);
-        System.out.println("Sorted Number Sequence" + Arrays.toString(seqNumbers));
-        findTheMissingNumber(seqNumbers);
-        scanner.close();
+        return seqNumbers;
     }
 
-    private static void sort(int[] seqNumbers) {
+    public static int[] sort(int[] seqNumbers) {
         int size = seqNumbers.length;
         for (int i = 0; i < size; i++) {
             for (int j = i + 1; j < size; j++) {
@@ -47,23 +51,29 @@ public class Main {
                 }
             }
         }
+        return seqNumbers;
     }
 
-    private static void findTheMissingNumber(int[] seqNumbers) {
+    public static String findTheMissingNumber(int[] seqNumbers) {
         StringBuilder builder = new StringBuilder();
-        builder.append("Missing Numbers for this Sequence are : ").append(System.lineSeparator());
+        builder.append("Missing Numbers for this Sequence are : ");
         for (int i = 0; i < seqNumbers.length - 1; i++) {
             if ((seqNumbers[i + 1] - seqNumbers[i]) == 2) {
-                builder.append(seqNumbers[i] + 1).append(System.lineSeparator());
+                builder.append(seqNumbers[i] + 1).append(",");
             } else if ((seqNumbers[i + 1] - seqNumbers[i]) >= 3) {
-                System.out.println("Invalid Sequence");
-                System.exit(0);
+                builder = new StringBuilder();
+                builder.append("Invalid Number Sequence.");
+                break;
             }
         }
-        System.out.println(builder.toString());
+        if (builder.toString().endsWith(",")) {
+            return builder.replace(builder.toString().length() - 1, builder.toString().length(), "").toString();
+        } else {
+            return builder.toString();
+        }
     }
 
-    private static boolean validateInput(String rawSplit) {
+    public static boolean validateInput(String rawSplit) {
         try {
             Double.parseDouble(rawSplit);
             return true;
@@ -71,4 +81,5 @@ public class Main {
             return false;
         }
     }
+
 }
