@@ -4,17 +4,20 @@
  */
 package com.gst.cch_numberofoccurrence;
 
+import java.util.Scanner;
+
 /**
  *
  * @author OBITO
  */
 public class Main {
-//TODO : use scanner
 //TODO : write test classess
 
     public static void main(String[] args) {
-        String text = "Apple is aPPle";
-        findTheOccurrences(text);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter the string");
+        findTheOccurrences(scanner.nextLine());
+        scanner.close();
     }
 
     public static void findTheOccurrences(String text) {
@@ -34,7 +37,7 @@ public class Main {
                     }
                 }
             }
-            System.out.println(String.valueOf(charStringArrayNoDups[i]) + " cound is " + countOfOccurrences);
+            System.out.println("Occrances of [" + String.valueOf(charStringArrayNoDups[i]) + "]" + " is " + countOfOccurrences);
         }
     }
 
