@@ -28,7 +28,13 @@ public class MainTest {
     }
 
     @Test
-    public void testValidateInput() {
+    public void testValidateInputWithNumber() {
+        boolean expected = true;
+        Assert.assertEquals(expected, Main.validateInput("1"));
+    }
+
+    @Test
+    public void testValidateInputWithLetter() {
         boolean expected = false;
         Assert.assertEquals(expected, Main.validateInput("A"));
     }
@@ -63,7 +69,7 @@ public class MainTest {
 
     @Test
     public void testFindTheMissingNumberInvalidSequence() {
-        int[] sortedNumberArray = { 2, 4, 5, 6, 9};
+        int[] sortedNumberArray = {2, 4, 5, 6, 9};
         Assert.assertEquals("Invalid Number Sequence.", Main.findTheMissingNumber(sortedNumberArray));
     }
 }
