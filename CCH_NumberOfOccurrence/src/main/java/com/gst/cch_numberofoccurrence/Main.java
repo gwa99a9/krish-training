@@ -11,23 +11,32 @@ import java.util.Scanner;
  * @author OBITO
  */
 public class Main {
-//TODO : write test classess
-
+    
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the string");
-        findTheOccurrences(scanner.nextLine());
+        init(scanner.nextLine());
         scanner.close();
     }
-
-    public static void findTheOccurrences(String text) {
-        find(text.toLowerCase());
-    }
-
-    private static void find(String rawString) {
+    
+    public static void init(String rawString) {
+        
+        rawString = rawString.toLowerCase().replaceAll("\\s+", "");
         char[] charStringArrayNoDups = removeDuplicates(rawString);
         sort(charStringArrayNoDups);
-
+        String expectedString = "Occrances of [a] is 2\n"
+                + "Occrances of [e] is 2\n"
+                + "Occrances of [i] is 1\n"
+                + "Occrances of [l] is 2\n"
+                + "Occrances of [p] is 4\n"
+                + "Occrances of [s] is 1";
+        System.out.println(expectedString);
+        System.out.println(expectedString.equals(findTheOccurrences(rawString, charStringArrayNoDups)));
+        System.out.println(findTheOccurrences(rawString, charStringArrayNoDups));
+    }
+    
+    public static String findTheOccurrences(String rawString, char[] charStringArrayNoDups) {
+        StringBuilder builder = new StringBuilder();
         for (int i = 0; i < charStringArrayNoDups.length; i++) {
             int countOfOccurrences = 0;
             for (int j = 0; j < rawString.toCharArray().length; j++) {
@@ -37,27 +46,29 @@ public class Main {
                     }
                 }
             }
-            System.out.println("Occrances of [" + String.valueOf(charStringArrayNoDups[i]) + "]" + " is " + countOfOccurrences);
+            builder.append("Occrances of [").append(String.valueOf(charStringArrayNoDups[i])).append("]").append(" is ").append(countOfOccurrences).append(System.lineSeparator());
         }
+        return builder.toString().trim();
     }
-
-    private static boolean isValidCharacter(String c) {
+    
+    public static boolean isValidCharacter(String c) {
         return c.matches("[a-zA-Z]+");
     }
-
-    private static char[] removeDuplicates(String text) {
+    
+    public static char[] removeDuplicates(String rawString) {
+        rawString = rawString.toLowerCase().replaceAll("\\s+", "");
         StringBuilder noDupsText = new StringBuilder();
-        for (int i = 0; i < text.length(); i++) {
-            if (isValidCharacter(String.valueOf(text.charAt(i)))) {
-                if (!noDupsText.toString().contains(String.valueOf(text.charAt(i)))) {
-                    noDupsText.append(text.charAt(i));
+        for (int i = 0; i < rawString.length(); i++) {
+            if (isValidCharacter(String.valueOf(rawString.charAt(i)))) {
+                if (!noDupsText.toString().contains(String.valueOf(rawString.charAt(i)))) {
+                    noDupsText.append(rawString.charAt(i));
                 }
             }
         }
         return noDupsText.toString().toCharArray();
     }
-
-    private static void sort(char[] charStringArrayNoDups) {
+    
+    public static char[] sort(char[] charStringArrayNoDups) {
         int size = charStringArrayNoDups.length;
         for (int i = 0; i < size; i++) {
             for (int j = i + 1; j < size; j++) {
@@ -68,5 +79,6 @@ public class Main {
                 }
             }
         }
+        return charStringArrayNoDups;
     }
 }
