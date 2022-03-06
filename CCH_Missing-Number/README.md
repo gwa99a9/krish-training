@@ -5,6 +5,6 @@
 - Can only have n+1 pattern
 
 ## Example
-![Example](CMD.png)
+![Example](https://github.com/gwa99a9/krish-training/blob/dev/CCH_Missing-Number/CMD.PNG?raw=true)
 ## Test Resuts
-![Test Results](CMD2.png)
+![Test Results](https://github.com/gwa99a9/krish-training/blob/dev/CCH_Missing-Number/CMD2.PNG?raw=true)
