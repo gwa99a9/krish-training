@@ -7,6 +7,6 @@
 - Case sensitivity dosen't matter
 
 ## Example
-![Example]https://github.com/gwa99a9/krish-training/blob/dev/CCH_NumberOfOccurrence/CMD.PNG?raw=true)
+![Example](https://github.com/gwa99a9/krish-training/blob/dev/CCH_NumberOfOccurrence/CMD.PNG?raw=true)
 ## Test Resuts
 ![Test Results](https://github.com/gwa99a9/krish-training/blob/dev/CCH_NumberOfOccurrence/CMD2.PNG?raw=true)
