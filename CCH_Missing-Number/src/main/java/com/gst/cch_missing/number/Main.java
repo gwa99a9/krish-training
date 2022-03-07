@@ -57,19 +57,27 @@ public class Main {
     public static String findTheMissingNumber(int[] seqNumbers) {
         StringBuilder builder = new StringBuilder();
         builder.append("Missing Numbers for this Sequence are : ");
+        boolean hasMissingNumber = false;
+        int missingNumberCount = 0;
         for (int i = 0; i < seqNumbers.length - 1; i++) {
             if ((seqNumbers[i + 1] - seqNumbers[i]) == 2) {
-                builder.append(seqNumbers[i] + 1).append(",");
+                missingNumberCount++;
+                hasMissingNumber = true;
+                builder.append(seqNumbers[i] + 1);
             } else if ((seqNumbers[i + 1] - seqNumbers[i]) >= 3) {
                 builder = new StringBuilder();
                 builder.append("Invalid Number Sequence.");
                 break;
             }
         }
-        if (builder.toString().endsWith(",")) {
-            return builder.replace(builder.toString().length() - 1, builder.toString().length(), "").toString();
+        if (hasMissingNumber) {
+            if (missingNumberCount <= 1) {
+                return builder.toString();
+            } else {
+                return "This number Sequence contains for than 1 missing number";
+            }
         } else {
-            return builder.toString();
+            return "There are no missing number in this Sequence.";
         }
     }
 
