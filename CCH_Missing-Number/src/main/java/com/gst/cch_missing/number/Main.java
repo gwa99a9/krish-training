@@ -65,8 +65,6 @@ public class Main {
                 hasMissingNumber = true;
                 builder.append(seqNumbers[i] + 1);
             } else if ((seqNumbers[i + 1] - seqNumbers[i]) >= 3) {
-                missingNumberCount++;
-                hasMissingNumber = true;
                 builder = new StringBuilder();
                 builder.append("Invalid Number Sequence.");
                 break;
