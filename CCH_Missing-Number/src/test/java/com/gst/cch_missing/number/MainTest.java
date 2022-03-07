@@ -57,14 +57,14 @@ public class MainTest {
 
     @Test
     public void testFindTheMissingNumberWithPositiveNumbersOnly() {
-        int[] sortedNumberArray = {1, 2, 4, 5, 6, 8};
-        Assert.assertEquals("Missing Numbers for this Sequence are : 3,7", Main.findTheMissingNumber(sortedNumberArray));
+        int[] sortedNumberArray = {1, 2, 4, 5};
+        Assert.assertEquals("Missing Numbers for this Sequence are : 3", Main.findTheMissingNumber(sortedNumberArray));
     }
 
     @Test
     public void testFindTheMissingNumberWithMixedNumbersOnly() {
-        int[] sortedNumberArray = {-3, -1, 1, 2, 4, 5, 6, 8};
-        Assert.assertEquals("Missing Numbers for this Sequence are : -2,0,3,7", Main.findTheMissingNumber(sortedNumberArray));
+        int[] sortedNumberArray = {-3, -1, 0, 1, 2};
+        Assert.assertEquals("Missing Numbers for this Sequence are : -2", Main.findTheMissingNumber(sortedNumberArray));
     }
 
     @Test
